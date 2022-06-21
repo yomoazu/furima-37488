@@ -72,43 +72,56 @@ https://gyazo.com/23e4dc6d70c62044539ea95cb4fdc79e
 | Column                | Type   | Options     |
 | ----------------------| ------ | ----------- |
 | name                  | string | null: false |
-| email                 | string | null: false |
-| password　　　　　　    | string | null: false |
-| first name            | string | null: false |
-| rast name             | string | null: false |
-| date of bath　　 　    | string | null: false |
+| email                 | string | null: false,unique: true |
+| encrypted_password    | string | null: false |
+| first_name            | string | null: false |
+| first_name_furigana   | string | null: false |
+| last_name             | string | null: false |
+| last_name_furigana    | string | null: false |
+| date_of_bath　　 　    | date   | null: false |
+
+- has_many :items
+- has_many :orders
+
 
 ## items テーブル
 
-| Column                | Type   | Options     |
-| ------                | ------ | ----------- |
-| image                 | string | null: false |
-| product name          | string | null: false |
-| description of item   | string | null: false |
-| product condition     | string | null: false |
-| delivery charge       | string | null: false |
-| shipping area         | string | null: false |
-| shipping days　　   　 | string | null: false |
-| price                 | string | null: false |
-| sales commission      | string | null: false |
-| sales profit          | string | null: false |
+| Column                | Type    | Options     |
+| ------                | ------- | ----------- |
+| product_name          | string  | null: false |
+| description_of_item   | string  | null: false |
+| category_id           | integer | null: false |
+| product_condition_id  | integer | null: false |
+| delivery_charge_id    | integer | null: false |
+| area_id               | integer | null: false |
+| shipping_day_id       | integer | null: false |
+| price                 | string  | null: false |
 
-## oders テーブル
+
+- belongs_to :user
+- has_one :order
+
+
+## orders テーブル
 
 | Column                | Type       | Options                        |
 | ----------------------| ---------- | ------------------------------ |
 | user                  | references | null: false, foreign_key: true |
 | item                  | references | null: false, foreign_key: true |
+| address               | references | null: false, foreign_key: true |
 
-## addless テーブル
+- belongs_to :user
+- belongs_to :item
+- has_one :address
+
+## address テーブル
 
 | Column                | Type       | Options                        |
 | ----------------------| ---------- | -------------------------------|
 | post code             | string     | null: false                    |
-| addless               | string     | null: false                    |
+| address               | string     | null: false                    |
 | phone number   　　　  | string     | null: false                    |
-| shipping cost burden  | string     | null: false                    |
-| area                  | string     | null: false                    |
-| days　　           　  | string     | null: false                    |
+| area_id               | integer    | null: false                    |
 | user                  | references | null: false, foreign_key: true |
 
+- belongs_to :order
