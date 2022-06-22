@@ -82,21 +82,21 @@ https://gyazo.com/23e4dc6d70c62044539ea95cb4fdc79e
 
 - has_many :items
 - has_many :orders
-
+- has_many :address
 
 ## items テーブル
 
 | Column                | Type    | Options     |
 | ------                | ------- | ----------- |
 | product_name          | string  | null: false |
-| description_of_item   | string  | null: false |
+| description_of_item   | text    | null: false |
 | category_id           | integer | null: false |
 | product_condition_id  | integer | null: false |
 | delivery_charge_id    | integer | null: false |
 | area_id               | integer | null: false |
 | shipping_day_id       | integer | null: false |
-| price                 | string  | null: false |
-
+| price                 | integer | null: false |
+| user                  | references | null: false, foreign_key: true |
 
 - belongs_to :user
 - has_one :order
@@ -108,20 +108,20 @@ https://gyazo.com/23e4dc6d70c62044539ea95cb4fdc79e
 | ----------------------| ---------- | ------------------------------ |
 | user                  | references | null: false, foreign_key: true |
 | item                  | references | null: false, foreign_key: true |
-| address               | references | null: false, foreign_key: true |
 
 - belongs_to :user
 - belongs_to :item
 - has_one :address
 
-## address テーブル
+## addresses テーブル
 
 | Column                | Type       | Options                        |
 | ----------------------| ---------- | -------------------------------|
-| post code             | string     | null: false                    |
-| address               | string     | null: false                    |
-| phone number   　　　  | string     | null: false                    |
+| post_code             | string     | null: false                    |
 | area_id               | integer    | null: false                    |
-| user                  | references | null: false, foreign_key: true |
-
+| municipality          | string     | null: false                    |
+| address               | string     | null: false                    |
+| Building name         | string     |                                |
+| phone number   　　　  | string     | null: false                    |
+| order                 | references | null: false, foreign_key: true |
 - belongs_to :order
