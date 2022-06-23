@@ -121,7 +121,7 @@ https://gyazo.com/23e4dc6d70c62044539ea95cb4fdc79e
 | area_id               | integer    | null: false                    |
 | municipality          | string     | null: false                    |
 | address               | string     | null: false                    |
-| Building_name         | string     |                                |
+| building_name         | string     |                                |
 | phone_number   　　　  | string     | null: false                    |
 | order                 | references | null: false, foreign_key: true |
 - belongs_to :order
