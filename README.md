@@ -78,7 +78,7 @@ https://gyazo.com/23e4dc6d70c62044539ea95cb4fdc79e
 | first_name_furigana   | string | null: false |
 | last_name             | string | null: false |
 | last_name_furigana    | string | null: false |
-| date_of_bath　　 　    | date   | null: false |
+| date_of_bath          | date   | null: false |
 
 - has_many :items
 - has_many :orders
