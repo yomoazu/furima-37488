@@ -100,7 +100,7 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("")
     end
     it "名前のフリガナは全角（カタカナ）でなければ登録できない" do
-      @user.family_name = "かな"
+      @user.last_name = "かな"
       @user.valid?
       expect(@user.errors.full_messages).to include("")
     end
@@ -110,7 +110,7 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("")
     end
     it "名前は全角（漢字・ひらがな・カタカナ）でなければ登録できない" do
-      @user.family_name = "kana"
+      @user.last_name = "kana"
       @user.valid?
       expect(@user.errors.full_messages).to include("")
     end
