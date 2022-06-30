@@ -6,7 +6,13 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
+    context 'ユーザー登録ができる時' do
+      it '全てのuser情報が正しく存在すれば登録できる' do
+        expect(@user).to be_valid
+      end
+    end
     
+    context 'ユーザー登録ができない時' do
     it 'nicknameが空では登録できない' do
       @user.name = ''
       @user.valid?
@@ -97,22 +103,22 @@ RSpec.describe User, type: :model do
     it "名字のフリガナは全角（カタカナ）でなければ登録できない" do
       @user.first_name = "かな"
       @user.valid?
-      expect(@user.errors.full_messages).to include("")
+      expect(@user.errors.full_messages).to include("First name カタカナでご入力下さい。")
     end
     it "名前のフリガナは全角（カタカナ）でなければ登録できない" do
       @user.last_name = "かな"
       @user.valid?
-      expect(@user.errors.full_messages).to include("")
+      expect(@user.errors.full_messages).to include("Last name カタカナでご入力下さい。")
     end
     it "名字は全角（漢字・ひらがな・カタカナ）でなければ登録できない" do
       @user.first_name = "kana"
       @user.valid?
-      expect(@user.errors.full_messages).to include("")
+      expect(@user.errors.full_messages).to include("First name 全角でご入力下さい。")
     end
     it "名前は全角（漢字・ひらがな・カタカナ）でなければ登録できない" do
       @user.last_name = "kana"
       @user.valid?
-      expect(@user.errors.full_messages).to include("")
+      expect(@user.errors.full_messages).to include("Last name name 全角でご入力下さい。")
     end
 
     it 'date_of_bathが空では登録できない' do
@@ -120,5 +126,6 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Date of bath can't be blank") 
     end  
+   end
   end
 end 
