@@ -12,8 +12,8 @@ class User < ApplicationRecord
 
   validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角ひらがな・カタカナ・漢字でご入力下さい'}
   validates :last_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角ひらがな・カタカナ・漢字でご入力下さい'}
-  validates :first_name, :first_name_furigana, format: { with: /\A[ァ-ヶー－]+\z/, message: "全角カタカナでご入力下さい"}
-  validates :last_name, :last_name_furigana, format: { with: /\A[ァ-ヶー－]+\z/, message: "全角カタカナでご入力下さい"}
+  validates :first_name_furigana, format: { with: /\A[ァ-ヶー－]+\z/, message: "全角カタカナでご入力下さい"}
+  validates :last_name_furigana, format: { with: /\A[ァ-ヶー－]+\z/, message: "全角カタカナでご入力下さい"}
   
   validates :first_name, presence: true
   validates :first_name_furigana, presence: true
