@@ -1,4 +1,11 @@
 class Item < ApplicationRecord
+  belongs_to :users
+  belongs_to :orders
+  has_one_attached :image
+
+  validates :content, presence: true
+end
+
     self.data = [
       { id: 1, name: '---' },
       { id: 2, name: 'メンズ' },
