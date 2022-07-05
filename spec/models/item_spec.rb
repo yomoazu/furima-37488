@@ -80,15 +80,15 @@ RSpec.describe Item, type: :model do
     end
 
     it 'imageが空では登録できない' do
-      @item.image =''
+      @item.image = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("image can't be blank")
+      expect(@item.errors.full_messages).to include("Image can't be blank")
     end
 
     it 'priceが半角数字以外が含まれている場合は出品できない' do
-      @user.password = '１２３４ｔｔtt'
-      @user.valid?
-      expect(@user.errors.full_messages).to include('Price は半角数字を両方含む必要があります')
+      @item.price = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is invalid")
     end
   end
   end

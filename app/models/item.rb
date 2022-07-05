@@ -20,7 +20,7 @@ class Item < ApplicationRecord
   validates :product_name, presence: true
   validates :description_of_item, presence: true
   validates :price, presence: true
-  validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /^([1-9]\d*|0)$/ }
+  validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
   validates :price, numericality: true
 
 
