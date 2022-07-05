@@ -21,6 +21,6 @@ class User < ApplicationRecord
   validates :last_name_furigana, presence: true
   validates :date_of_bath, presence: true
 
-  #has_many :items
+  has_many :items
   #has_many :orders
 end
