@@ -25,13 +25,13 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-   def set_product
-    @item = Item.find(params[:id])
+  #def show
+   #def set_product
+    #@item = Item.find(params[:id])
     #@product = Product.find(params[:id])
-   end
+   #end
 
-  end
+  #end
 
   private
   def item_params
