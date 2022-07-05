@@ -11,6 +11,14 @@
   <div class="actions">
     <%= f.submit "Resend confirmation instructions" %>
   </div>
+
+  <% @product.each do |item| %>
+    <li class='item'>
+    <%= link_to product_path(product.id) do%>
+    <div class='item-img-content'>
+    <%= image_tag product.image, class: "item-img"%>
+  <% end %>
+
 <% end %>
 
 <%= render "devise/shared/links" %>

@@ -126,20 +126,33 @@
     <div class="subtitle" >
       新規投稿商品
     </div>
-    <ul class='item-lists'>
 
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
+    <ul class='item-lists'>
+  <% @items.each do |item| %>
+  <%= item.product_name %>
+  <%= item.description_of_item %>
+  <%= item.category_id %>
+  <%= item.product_condition_id %>
+  <%= item.delivery_charge_id %>
+  <%= item.area_id %>
+  <%= item.shipping_day_id %>
+  <%= item.price %>
+  <%= item.user %>
+
+  <%= item.created_at %>
+<% end %>
+
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to "item" do %>
         <div class='item-img-content'>
           <%= image_tag "item-sample.png", class: "item-img" %>
-
+          <%# if @user_item %> 
           <%# 商品が売れていればsold outを表示しましょう %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
           <%# //商品が売れていればsold outを表示しましょう %>
-
+        <%# end %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
