@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to :delivery_charge
   belongs_to :product_condition
   belongs_to :shipping_day
-  has_one :order
+  #has_one :order
   has_one_attached :image
 
   validates :area_id,:category_id,:delivery_charge_id,:product_condition_id,:shipping_day_id,presence: true 
@@ -20,7 +20,7 @@ class Item < ApplicationRecord
   validates :product_name, presence: true
   validates :description_of_item, presence: true
   validates :price, presence: true
-  validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
+  validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /^([1-9]\d*|0)$/ }
   validates :price, numericality: true
 
 
