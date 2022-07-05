@@ -127,7 +127,7 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-    <%# ここに「商品がitemsテーブルに存在すれば」という条件を追加 %>
+ 
     <% @items.each do |item| %>
      
     
@@ -167,8 +167,6 @@
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
       <%# 商品がある場合は表示されないようにしましょう %>
 
-     <%# 「そうでなければ」という条件を追加 %>
-    
       <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
