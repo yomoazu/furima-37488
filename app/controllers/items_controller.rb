@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to items_path
       #redirect_to root_path
-    else
+       else
       render :new
       #render :new
     end
