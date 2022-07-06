@@ -21,7 +21,7 @@
          ¥ <%= @item.price %>
              </span>
               <span class="item-postage">
-               <%= @item.delivery_charge %>
+               <%= @item.delivery_charge.name %>
                 </span>
       </div>
        </div>
@@ -32,6 +32,8 @@
       <% if current_user.id == @item.user.id %>
 
     <%= link_to "商品の編集",  "#", method: :get, class: "item-red-btn" %>
+
+    
     <p class="or-text">or</p>
     <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
     <% else %>
@@ -42,10 +44,10 @@
     <% end %>
   
     <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-    <% if user_signed_in? %>
-    <% if current_user.id == @item.user_id %> 
+    <%# if user_signed_in? %>
+    <%# if current_user.id == @item.user_id %> 
  
-    <% else %>  
+    
     <div class="item-explain-box">
      <span><%= @item.description_of_item %></span>
     
@@ -53,7 +55,7 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @item.user %></td>
+          <td class="detail-value"><%= @item.user.name %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
@@ -75,8 +77,10 @@
           <th class="detail-item">発送日の目安</th>
           <td class="detail-value"><%= @item.shipping_day_id %></td>
         </tr>
+       
       </tbody>
     </table>
+      
     <div class="option">
       <div class="favorite-btn">
         <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
@@ -87,7 +91,8 @@
         <span>不適切な商品の通報</span>
       </div>
     </div>
-    <%# /商品の概要 %>
+     <%# else %>
+     <%# /商品の概要 %>
 
    <div class="comment-box">
     <form>
@@ -117,6 +122,6 @@
 </div>
 </div>
 <%= render "shared/footer" %>
-<% end %>
-<% end %>
+<%# end %>
+<%# end %>
 <%# end %>
