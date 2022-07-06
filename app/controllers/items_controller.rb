@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  #before_action :set_product, only: [:show, :smove_to_index]
   before_action :authenticate_user!, except: [:index, :show]
   def index
     
@@ -7,10 +8,10 @@ class ItemsController < ApplicationController
 
   def new
     if user_signed_in?
-    @item = Item.new
+     @item = Item.new
     else
       redirect_to user_session_path(@item_id)
-   end
+    end
   end
 
  
@@ -25,13 +26,14 @@ class ItemsController < ApplicationController
     end
   end
 
-  #def show
-   #def set_product
-    #@item = Item.find(params[:id])
-    #@product = Product.find(params[:id])
-   #end
+  def show
+  
+    @item = Item.find(params[:id])
+  
+  end
 
-  #end
+
+    
 
   private
   def item_params
