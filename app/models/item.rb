@@ -8,11 +8,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
   #has_one :order
   has_one_attached :image
-  validates :content, presence: true, unless: :was_attached?
-
-  def was_attached?
-    self.image.attached?
-  end
+  
 
   validates :area_id,:category_id,:delivery_charge_id,:product_condition_id,:shipping_day_id,presence: true 
   validates :area_id, numericality: { other_than: 1 } 
