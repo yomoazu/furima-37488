@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   #before_action :set_product, only: [:show, :smove_to_index]
   before_action :set_item,only: [:edit, :show, :update]
   before_action :move_to_index,except: [:index, :show]
-  before_action :ensure_current_user,except: [:index, :show]
+  before_action :ensure_current_user,only: [:edit]
   before_action :authenticate_user!, except: [:index, :show]
   def index
     
