@@ -41,8 +41,7 @@ class ItemsController < ApplicationController
   def update
   
     if @item.update(item_params)
-     redirect_to items_path
-    #redirect_to root_path
+      redirect_to root_path
     else
      render :edit
     end
@@ -66,12 +65,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
-  def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
-  end
-  # authentictae_user!
-
 end
