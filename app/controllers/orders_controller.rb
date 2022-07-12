@@ -38,8 +38,7 @@ class OrdersController < ApplicationController
 
   def order_address_params
     params.require(:order_address).permit(:post_code, :area_id, :municipality, :address, :building_name, :phone_number, :order).merge(user_id: current_user.id)
-  end
-
+  end                                                                                                
   # | area_id               | integer    | null: false                    |
   # | municipality          | string     | null: false                    |
   # | address               | string     | null: false                    |

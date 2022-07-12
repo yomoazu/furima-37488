@@ -5,7 +5,6 @@ class Address < ApplicationRecord
   # validates :prefecture, numericality: {other_than: 0, message: "can't be blank"}
 end
 
-end
 
 
 
