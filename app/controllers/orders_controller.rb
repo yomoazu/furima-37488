@@ -5,6 +5,13 @@ class OrdersController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
+    @order = Order.new
+
+    if current_user == @item.user
+      redirect_to root_path
+      else
+        render :index
+    end
   end
 
   def new
@@ -15,12 +22,13 @@ class OrdersController < ApplicationController
        @item = Item.find(params[:item_id])
        @order_address = OrderAddress.new(order_address_params)
     if @order_address.valid?
+       pay_item
        @order_address.save
        redirect_to root_path
-
-    else
-      render :index
-    end
+          else
+          render :index
+       end
+    
   end
 
   #def create
@@ -37,23 +45,19 @@ class OrdersController < ApplicationController
   private
 
   def order_address_params
-    params.require(:order_address).permit(:post_code, :area_id, :municipality, :address, :building_name, :phone_number, :order).merge(item_id: @item.id,user_id: current_user.id)
-  end                                                                                                
-  # | area_id               | integer    | null: false                    |
-  # | municipality          | string     | null: false                    |
-  # | address               | string     | null: false                    |
-  # | building_name         | string     |                                |
-  # | phone_number   　　　  | string     | null: false                    |
-  # | order                 | references | null: false, foreign_key: true |
-  
+    params.require(:order_address).permit(:post_code, :area_id, :municipality, :address, :building_name, :phone_number, :order).merge(item_id: @item.id,user_id: current_user.id,token: params[:token])
+  end  
 
+ 
 
-
-
-  # 削除
-  # def address_params
-  #   params.permit(:postal_code, :prefecture, :city, :house_number, :building_name).merge(donation_id: @donation.id)
-  # end
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp::Charge.create(
+      amount: @item.price,  # 商品の値段
+      card: order_address_params[:token],    # カードトークン
+      currency: 'jpy'                 # 通貨の種類（日本円）
+    )
+  end
 end
 
 
