@@ -7,12 +7,18 @@ class OrdersController < ApplicationController
     @order_address = OrderAddress.new
     @order = Order.new
 
-    if current_user == @item.user
+    if current_user == @item.user || @item.order.present?
+
       redirect_to root_path
       else
         render :index
     end
   end
+
+
+   
+
+
 
   def new
     

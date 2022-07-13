@@ -97,12 +97,12 @@ require 'rails_helper'
               it '電話番号にハイフンがあると保存できないこと' do
                 @order.phone_number = '123 - 1234 - 1234'
                 @order.valid?
-                expect(@order.errors.full_messages).to include("Phone number 半角数字の10ケタ以上11ケタ以下でご入力ください。")
+                expect(@order.errors.full_messages).to include("Phone number 半角数字の10ケタ以上11ケタ以下でご入力ください")
               end
               it '電話番号が12桁以上あると保存できないこと' do
                 @order.phone_number = 12_345_678_910_123_111
                 @order.valid?
-                expect(@order.errors.full_messages).to include("Phone number 半角数字の10ケタ以上11ケタ以下でご入力ください。")
+                expect(@order.errors.full_messages).to include("Phone number 半角数字の10ケタ以上11ケタ以下でご入力ください")
               end
                   #it 'トークンが空だと保存できないこと' do
                 # @order.token = nil
