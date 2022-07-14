@@ -110,20 +110,7 @@ require 'rails_helper'
                 @order.valid?
                 expect(@order.errors.full_messages).to include("Phone number 半角数字の10ケタ以上11ケタ以下でご入力ください")
               end
-                  #it 'トークンが空だと保存できないこと' do
-                # @order.token = nil
-                # @order.valid?
-                  #expect(@order.errors.full_messages).to include("Token can't be blank")
-                # end
-
-           
-        
-                #context '内容に問題がある場合' do
-                  #it "priceが空では保存ができないこと" do
-                    #@order.price = nil
-                  # @order.valid?
-                  # expect(@order.errors.full_messages).to include("Price can't be blank")
-                # end
+               
         
                 it "tokenが空では登録できないこと" do
                   @order.token = nil
