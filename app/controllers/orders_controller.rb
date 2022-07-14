@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: :index
-  
+  before_action :authenticate_user!
+  before_action :set_item
+  before_action :ensure_current_user
+ 
 
   def index
     @item = Item.find(params[:item_id])
@@ -8,20 +10,10 @@ class OrdersController < ApplicationController
     @order = Order.new
 
     if current_user == @item.user || @item.order.present?
-
       redirect_to root_path
       else
         render :index
     end
-  end
-
-
-   
-
-
-
-  def new
-    
   end
 
   def create
@@ -37,24 +29,11 @@ class OrdersController < ApplicationController
     
   end
 
-  #def create
-   # @item = Item.new(item_params)
-    #if @item.save
-     # redirect_to items_path
-      #redirect_to root_path
-      # else
-      #render :new
-      #render :new
-   # end
- # end
-
   private
 
   def order_address_params
     params.require(:order_address).permit(:post_code, :area_id, :municipality, :address, :building_name, :phone_number, :order).merge(item_id: @item.id,user_id: current_user.id,token: params[:token])
   end  
-
- 
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
@@ -63,6 +42,18 @@ class OrdersController < ApplicationController
       card: order_address_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def ensure_current_user   
+ 
+  if @current_user == @item.user_id || @item.order.present?
+    redirect_to root_path
+    
+  end
   end
 end
 
