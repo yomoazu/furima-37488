@@ -8,7 +8,7 @@
     </h2>
        <div class="item-img-content">
          <%= image_tag @item.image ,class:"item-box-img" %>
-         <%# 商品が売れている場合は、sold outを表示しましょう %>
+         
             <% if @item.order %>
              <div class="sold-out">
                 <span>Sold Out!!</span>
@@ -37,8 +37,7 @@
         <% else %>
          <%= link_to "購入画面に進む",item_orders_path(@item.id),class:"item-red-btn"%>
     
-         <%#= link_to "購入画面に進む",item_orders_path(@item.id),class:"item-red-btn"%>
-       
+        
       <% end %>
     <% end %>
      
@@ -88,7 +87,7 @@
         <span>不適切な商品の通報</span>
       </div>
     </div>
-     <%# else %>
+    
      <%# /商品の概要 %>
 
     <div class="comment-box">
@@ -119,5 +118,5 @@
   </div>
 </div>
 <%= render "shared/footer" %>
-<%# end %>
-<%# end %>
+
+
