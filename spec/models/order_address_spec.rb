@@ -3,11 +3,11 @@ require 'rails_helper'
   RSpec.describe OrderAddress, type: :model do
    
         before do
-          # @donation_address = FactoryBot.build(:donation_address, )
+    
           user = FactoryBot.create(:user)
           item = FactoryBot.create(:item)
           @order = FactoryBot.build(:order_address,user_id: user.id,item_id: item.id)
-          #@order = FactoryBot.build(:post_code,:area_id,:municipality,:address,:building_name,:phone_number)
+
         end
      
       describe '配送先情報の保存' do
