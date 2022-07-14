@@ -5,16 +5,10 @@ class OrdersController < ApplicationController
  
 
   def index
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
-    @order = Order.new
+    
 
-    if current_user == @item.user || @item.order.present?
-      redirect_to root_path
-      else
-        render :index
-    end
-  end
+    
 
   def create
        @item = Item.find(params[:item_id])
@@ -50,7 +44,7 @@ class OrdersController < ApplicationController
 
   def ensure_current_user   
  
-  if @current_user == @item.user_id || @item.order.present?
+  if current_user == @item.user_id || @item.order.present?
     redirect_to root_path
     
   end

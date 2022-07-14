@@ -9,9 +9,9 @@ class ItemsController < ApplicationController
   end
 
   def new
-    if user_signed_in?
+     if user_signed_in?
      @item = Item.new
-    else
+     else
       redirect_to user_session_path(@item_id)
     end
   end
@@ -34,12 +34,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
- 
-    if current_user == @item.user || @item.order.present?
-      redirect_to root_path
-      else
-        render :index
-      end
+
   end
 
   def update
@@ -65,7 +60,7 @@ class ItemsController < ApplicationController
 
   def ensure_current_user
     @item = Item.find(params[:id])
-    if @item.user_id != current_user.id
+    if @item.user_id != current_user.id || @item.order.present?
       redirect_to action: :index
     end
   end

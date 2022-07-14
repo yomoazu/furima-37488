@@ -62,7 +62,8 @@ require 'rails_helper'
               it '郵便番号が空だと保存できないこと' do
                 @order.post_code = nil
                 @order.valid?
-                expect(@order.errors.full_messages).to include("Post code can't be blank", "Post code is invalid. Include hyphen(-)")
+                expect(@order.errors.full_messages).to include("Post code can't be blank", )
+                                                              #"Post code is invalid. Include hyphen(-)"
               end
               it '郵便番号にハイフンがないと保存できないこと' do
                 @order.post_code = 1_234_567
@@ -101,6 +102,11 @@ require 'rails_helper'
               end
               it '電話番号が12桁以上あると保存できないこと' do
                 @order.phone_number = 12_345_678_910_123_111
+                @order.valid?
+                expect(@order.errors.full_messages).to include("Phone number 半角数字の10ケタ以上11ケタ以下でご入力ください")
+              end
+              it '電話番号が9桁以下では購入できない' do
+                @order.phone_number = 12_345_678
                 @order.valid?
                 expect(@order.errors.full_messages).to include("Phone number 半角数字の10ケタ以上11ケタ以下でご入力ください")
               end
